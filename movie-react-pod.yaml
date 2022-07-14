@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: moviereact-pod
+spec:
+  containers: 
+    - image: shrivatsakoulgi/movie-react:1.0
+      name: moviereact
+      ports:
+      - containerPort: 3000

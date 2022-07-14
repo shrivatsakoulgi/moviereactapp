@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-react-deployment
+  labels:
+    app: moviereact
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: moviereact
+  template:
+    metadata:
+      labels:
+        app: moviereact
+    spec:
+      containers:
+      - name: moviereact
+        image: shrivatsakoulgi/movie-react:2.0
+        ports:
+        - containerPort: 3000
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie-react-service
+spec:
+  type: NodePort
+  selector:
+    app: moviereact
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30300
+      
